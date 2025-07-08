@@ -1,231 +1,200 @@
-<!DOCTYPE html><html lang="pt-br">
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cartão com o Robô Wellington 🤖</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <title>Cartão Digital - Wellington</title>
   <style>
-    html, body {
+    body {
       margin: 0;
-      padding: 0;
-      height: 100%;
-      font-family: 'Roboto Mono', monospace;
-      background: linear-gradient(135deg, #000000, #0d0d1a);
+      background: linear-gradient(to right, #0a0a23, #1a1a3a);
       color: #ffffff;
+      font-family: 'Segoe UI', sans-serif;
       display: flex;
       flex-direction: column;
-      overflow: hidden;
+      height: 100vh;
     }
+
     header {
-      background: radial-gradient(circle at top left, #1a1a3f, #000020);
+      background-color: #0c0c2c;
       padding: 20px;
       text-align: center;
     }
+
     header img {
-      max-width: 120px;
-      animation: pulse 3s infinite;
+      height: 100px;
     }
-    @keyframes pulse {
-      0% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.05); opacity: 0.9; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-    .welcome {
-      text-align: center;
-      padding: 10px 20px;
-      font-size: 0.9rem;
-      background-color: #111133;
-      border-bottom: 2px solid #222244;
-      color: #ccc;
-    }
-    .chat-container {
+
+    #chat {
       flex: 1;
       display: flex;
       flex-direction: column;
-      max-width: 700px;
-      width: 100%;
-      margin: 0 auto;
-      background: linear-gradient(to bottom, #1a1a2e, #121222);
-      border-radius: 20px 20px 0 0;
-      box-shadow: 0 0 30px rgba(0, 0, 0, 0.9);
-      overflow: hidden;
-      position: relative;
-    }
-    .chat-display {
-      font-size: 1rem;
-      line-height: 1.6;
-      white-space: pre-line;
-      padding: 15px;
-      border-radius: 10px;
-      background-color: #0b0b1d;
-      border: 1px solid #333355;
-      flex-grow: 1;
-      overflow-y: auto;
-      scroll-behavior: smooth;
-    }
-    .user-input {
-      display: flex;
-      gap: 10px;
-      padding: 10px;
-      background-color: #0a0a1a;
-      border-top: 2px solid #333355;
-      position: relative;
-      bottom: 0;
-    }
-    .user-input input {
-      flex: 1;
-      padding: 12px;
-      border: none;
-      border-radius: 10px;
-      background-color: #2a2a40;
-      color: white;
-      font-size: 1rem;
-    }
-    .send-button, .final-button {
-      padding: 12px 16px;
-      background: linear-gradient(45deg, #00c6ff, #0072ff);
-      border: none;
-      border-radius: 10px;
-      font-size: 1rem;
-      color: white;
-      cursor: pointer;
-      transition: transform 0.2s ease-in-out;
-      font-family: 'Orbitron', sans-serif;
-      box-shadow: 0 0 10px rgba(0, 183, 255, 0.4);
-    }
-    .send-button:hover, .final-button:hover {
-      transform: scale(1.05);
-    }
-    .start-button {
-      text-align: center;
-      margin: 20px auto;
-    }
-    .start-button button {
-      background: linear-gradient(90deg, #00c6ff, #0072ff);
-      color: #fff;
-      border: none;
-      padding: 15px 30px;
-      font-size: 1.1rem;
-      border-radius: 12px;
-      font-family: 'Orbitron', sans-serif;
-      cursor: pointer;
-      transition: all 0.3s ease-in-out;
-      box-shadow: 0 0 15px rgba(0, 183, 255, 0.5);
-    }
-    .start-button button:hover {
-      transform: scale(1.05);
-      opacity: 0.95;
-    }
-    .final-button-container {
-      text-align: center;
       padding: 20px;
-      display: none;
+      overflow-y: auto;
+    }
+
+    .msg {
+      margin-bottom: 15px;
+      font-size: 1rem;
+    }
+
+    .bot {
+      color: #a0c4ff;
+      animation: typing 1s steps(20, end), blink 1s infinite;
+    }
+
+    .user {
+      color: #ffffff;
+      font-weight: bold;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+    input, button {
+      padding: 12px;
+      margin-top: 10px;
+      font-size: 1rem;
+      width: 100%;
+      border-radius: 8px;
+      border: none;
+    }
+
+    input {
+      background: #2a2a40;
+      color: white;
+    }
+
+    button {
+      background: linear-gradient(to right, #6a00f4, #0077ff);
+      color: white;
+      cursor: pointer;
+    }
+
+    footer {
+      background: #0c0c2c;
+      padding: 10px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #aaa;
+    }
+
+    @media (max-height: 700px) {
+      header img {
+        height: 80px;
+      }
     }
   </style>
 </head>
 <body>
   <header>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Desenvolvedora_Wellington_Logo.jpg" alt="Logo Wellington">
-  </header>  <div class="welcome">
-    👋 Oi! Eu sou o Robô Wellington e vou te ajudar a criar um cartão de visita incrível!<br>
-    Quando estiver pronto, clique no botão abaixo pra começarmos a conversa.
-  </div>  <div class="start-button">
-    <button onclick="iniciarConversa()">🚀 Pode começar</button>
-  </div>  <div class="chat-container" style="display:none">
-    <div id="chatDisplay" class="chat-display"></div>
-    <div class="user-input">
-      <input type="text" id="respostaUsuario" placeholder="Digite aqui..." onfocus="rolarParaFim()" />
-      <button class="send-button" onclick="responderPergunta()">Enviar</button>
-    </div>
-  </div>  <div id="finalizarContainer" class="final-button-container">
-    <button class="final-button" onclick="enviarParaWhatsApp()">✅ Confirmar e Enviar</button>
-  </div>  <script>
+    <img src="logo-wellington.png" alt="Logo Desenvolvedora Wellington">
+  </header>
+
+  <div id="chat"></div>
+
+  <div style="padding: 20px;">
+    <input type="text" id="resposta" placeholder="Digite sua resposta..." onkeypress="handleKey(event)" />
+    <button onclick="responder()">✅ Confirmar e Enviar</button>
+  </div>
+
+  <footer>
+    Desenvolvedora Wellington - Criando soluções inteligentes para pequenos negócios.
+  </footer>
+
+  <script>
     const perguntas = [
-      "Oi! 😄 Qual é o seu nome completo? E o nome da sua empresa (se tiver)?",
-      "Maravilha! Agora me conta: o que você faz? Tipo: vende roupas, corta cabelo, dá aula...",
-      "Legal! Qual é o seu número de WhatsApp pra colocar no cartão?",
-      "Tem Instagram? Passa o @ aí!",
-      "Quer colocar seu e-mail profissional também?",
-      "Se quiser, manda o endereço do seu ponto (caso tenha local físico).",
-      "Você quer que tenha QR Code no cartão? (tipo um link pro seu Insta ou WhatsApp direto)",
-      "Agora vamos falar de estilo! Prefere algo mais sério, moderno ou descontraído?",
-      "Tem alguma cor que te representa ou que você gostaria no visual do cartão?",
-      "Show! Vamos gerar um logotipo personalizado com base nessas infos. Se não curtir, pode entrar em contato que a gente muda rapidinho pelo seu logo original. Tranquilo?",
-      "Se tiver um site, quer incluir também? Se sim, manda o link aí!",
-      "Tudo certo até aqui! Bora fechar com uma frase legal? Algo tipo: ‘Atendimento com qualidade’ ou ‘Serviço que impressiona’",
-      "Agora aperta o botão abaixo pra confirmar e enviar tudo pra gente montar seu cartão!"
+      "👋 Oi! Vamos criar seu cartão de visita. Qual seu nome ou nome da sua empresa?",
+      "✨ Legal! E qual é o seu Instagram ou outra rede que quer colocar?",
+      "📞 Qual número de WhatsApp você quer colocar?",
+      "📍 Quer colocar o endereço? (Se sim, manda aqui)",
+      "🎨 Tem uma cor preferida ou estilo? (ex: moderno, elegante, divertido...)",
+      "📷 Tem logotipo? Se não tiver, a gente pode gerar um pra você!",
+      "🔖 Quer frase de impacto ou slogan? (ex: Qualidade que impressiona!)",
+      "🧾 Quer cartão digital, impresso ou os dois?",
+      "📎 Pronto! Agora é só confirmar e vamos enviar pro WhatsApp pra finalizar!"
     ];
 
-    let index = 0;
+    let etapa = 0;
     let respostas = [];
-    const chatDisplay = document.getElementById('chatDisplay');
-    const input = document.getElementById('respostaUsuario');
 
-    function digitarTexto(texto, callback) {
-      let i = 0;
-      function escrever() {
-        if (i < texto.length) {
-          chatDisplay.innerHTML += texto.charAt(i);
-          chatDisplay.scrollTop = chatDisplay.scrollHeight;
-          i++;
-          setTimeout(escrever, 25);
-        } else {
-          chatDisplay.innerHTML += "\n\n";
-          chatDisplay.scrollTop = chatDisplay.scrollHeight;
-          if (callback) callback();
-        }
-      }
-      escrever();
+    const chat = document.getElementById('chat');
+    const input = document.getElementById('resposta');
+
+    function escreverBot(msg) {
+      const div = document.createElement('div');
+      div.className = 'msg bot';
+      div.textContent = msg;
+      chat.appendChild(div);
+      chat.scrollTop = chat.scrollHeight;
     }
 
-    function mostrarPergunta() {
-      if (index < perguntas.length) {
-        digitarTexto(perguntas[index], () => {
-          if (index === perguntas.length - 1) {
-            document.getElementById('finalizarContainer').style.display = 'block';
-          }
-        });
+    function escreverUser(msg) {
+      const div = document.createElement('div');
+      div.className = 'msg user';
+      div.textContent = msg;
+      chat.appendChild(div);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    function handleKey(e) {
+      if (e.key === 'Enter') {
+        responder();
       }
     }
 
-    function responderPergunta() {
-      const resposta = input.value.trim();
-      if (resposta !== '') {
-        respostas.push(resposta);
-        chatDisplay.innerHTML += `👤 Você: ${resposta}\n\n`;
-        chatDisplay.scrollTop = chatDisplay.scrollHeight;
-        input.value = '';
-        index++;
-        setTimeout(mostrarPergunta, 600);
+    function responder() {
+      const texto = input.value.trim();
+      if (texto === '') return;
+
+      escreverUser(texto);
+      respostas.push(texto);
+      input.value = '';
+
+      etapa++;
+      if (etapa < perguntas.length) {
+        setTimeout(() => {
+          escreverBot(perguntas[etapa]);
+        }, 600);
+      } else {
+        setTimeout(() => {
+          escreverBot("✅ Tudo anotado! Agora clique no botão abaixo para confirmar e enviar pro WhatsApp.");
+        }, 800);
+        setTimeout(() => {
+          criarBotaoEnviar();
+        }, 2000);
       }
     }
 
-    function enviarParaWhatsApp() {
-      let mensagem = 'Nova solicitação de cartão de visita:%0A';
+    function criarBotaoEnviar() {
+      const botao = document.createElement('button');
+      botao.textContent = '📲 Enviar para WhatsApp';
+      botao.style.marginTop = '15px';
+      botao.onclick = enviarWhatsApp;
+      chat.appendChild(botao);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    function enviarWhatsApp() {
+      const numero = '5521979209224';
+      let mensagem = '💼 Nova solicitação de cartão de visita:%0A%0A';
+
       perguntas.forEach((pergunta, i) => {
-        if (respostas[i]) {
-          mensagem += `${pergunta}\n${respostas[i]}%0A`;
-        }
+        mensagem += `${pergunta}%0A👉 ${respostas[i] || '-'}%0A%0A`;
       });
-      const numeroAdmin = '5521979209224';
-      const url = `https://wa.me/${numeroAdmin}?text=${mensagem}`;
+
+      const url = `https://wa.me/${numero}?text=${mensagem}`;
       window.open(url, '_blank');
     }
 
-    function rolarParaFim() {
-      setTimeout(() => {
-        chatDisplay.scrollTop = chatDisplay.scrollHeight;
-      }, 300);
-    }
-
-    function iniciarConversa() {
-      document.querySelector('.start-button').style.display = 'none';
-      document.querySelector('.chat-container').style.display = 'flex';
-      mostrarPergunta();
-    }
-
-    window.onload = () => {
-      window.scrollTo(0, 0);
-    }
-  </script></body>
+    // Início do chat
+    escreverBot(perguntas[0]);
+  </script>
+</body>
 </html>
