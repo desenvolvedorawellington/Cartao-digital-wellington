@@ -22,7 +22,9 @@
       text-align: center;
     }
     header img {
-      max-width: 120px;
+      max-width: 140px;
+      border-radius: 16px;
+      box-shadow: 0 0 15px #00c6ff;
       animation: pulse 3s infinite;
     }
     @keyframes pulse {
@@ -125,21 +127,26 @@
 </head>
 <body>
   <header>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Desenvolvedora_Wellington_Logo.jpg" alt="Logo Wellington">
-  </header>  <div class="welcome">
+    <img src="logo_wellington.png" alt="Logo Wellington">
+  </header>
+  <div class="welcome">
     👋 Oi! Eu sou o Robô Wellington e vou te ajudar a criar um cartão de visita incrível!<br>
     Quando estiver pronto, clique no botão abaixo pra começarmos a conversa.
-  </div>  <div class="start-button">
+  </div>
+  <div class="start-button">
     <button onclick="iniciarConversa()">🚀 Pode começar</button>
-  </div>  <div class="chat-container" style="display:none">
+  </div>
+  <div class="chat-container" style="display:none">
     <div id="chatDisplay" class="chat-display"></div>
     <div class="user-input">
       <input type="text" id="respostaUsuario" placeholder="Digite aqui..." onfocus="rolarParaFim()" />
       <button class="send-button" onclick="responderPergunta()">Enviar</button>
     </div>
-  </div>  <div id="finalizarContainer" class="final-button-container">
+  </div>
+  <div id="finalizarContainer" class="final-button-container">
     <button class="final-button" onclick="enviarParaWhatsApp()">✅ Confirmar e Enviar</button>
-  </div>  <script>
+  </div>
+  <script>
     const perguntas = [
       "Oi! 😄 Qual é o seu nome completo? E o nome da sua empresa (se tiver)?",
       "Maravilha! Agora me conta: o que você faz? Tipo: vende roupas, corta cabelo, dá aula...",
@@ -227,5 +234,6 @@
     window.onload = () => {
       window.scrollTo(0, 0);
     }
-  </script></body>
+  </script>
+</body>
 </html>
